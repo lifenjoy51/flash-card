@@ -51,6 +51,54 @@ npm run dev
 2. **용량:** 50KB 미만 권장 (SIPS 또는 이미지 압축 도구 활용)
 3. **데이터 등록:** `src/App.tsx`의 `wordData` 배열에 `{ name: '한글이름', file: '영문파일명.jpg' }` 형태로 추가
 
+### 이미지 생성 프롬프트
+사물 사진을 영유아용 일러스트로 변환할 때 아래 프롬프트를 사용합니다. `{Target Object}`에 대상 사물명을 넣고, Source Image로 실물 사진을 첨부합니다.
+
+<details>
+<summary>프롬프트 전문 보기</summary>
+
+```
+Role:
+You are an expert illustrator creating educational materials for toddlers
+(around 20 months old). Your goal is to transform realistic photos into
+clear, simple, and engaging illustrations for flashcards.
+
+Input:
+- Source Image: (첨부)
+- Target Object: {Target Object}
+
+Instructions:
+1. Identify: Locate the "{Target Object}" within the Source Image.
+
+2. Reconstruct to Whole (Crucial Step):
+   - Assess if the object is partially cut off by the edge of the photo.
+   - If cut off, use your knowledge of the object to imagine and reconstruct
+     the missing parts, creating a view of the entire, complete object.
+   - Ensure the reconstructed parts maintain logical continuity in shape,
+     color, and texture with the visible parts in the photo.
+
+3. Isolate & Background: Completely remove all original background elements,
+   other objects, and clutter. Place the now-complete object on a solid,
+   clean white background (#FFFFFF). No shadows or floor textures.
+
+4. Style (Toddler-Friendly Vector): Convert the realistic (and reconstructed)
+   object into a friendly, cute vector illustration.
+   - Outlines: Use bold, thick, smooth black outlines to define the shape clearly.
+   - Shapes: Simplify complex geometry into basic, rounded shapes.
+     Avoid sharp corners if possible.
+   - Colors: Use solid, cheerful, high-contrast flat colors based on the
+     object's actual color. No gradients, complex textures, or realistic shading.
+   - Perspective: Present the complete object from its most recognizable angle
+     (canonical view).
+
+Goal:
+The final image should be an instantly recognizable, clean, and simple icon
+of the entire "{Target Object}" that a 20-month-old baby can easily identify,
+even if the original photo was cropped.
+```
+
+</details>
+
 ### 자동 배포
 `main` 브랜치에 코드가 `push`되면 GitHub Actions가 자동으로 빌드하여 `gh-pages` 브랜치로 배포합니다.
 
