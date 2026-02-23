@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#FFD966"/>
+  <text x="256" y="300" font-family="sans-serif" font-size="280" font-weight="bold" text-anchor="middle" fill="#4A4A4A">옹</text>
+  <circle cx="380" cy="120" r="30" fill="#FF8A80"/>
+  <circle cx="420" cy="160" r="20" fill="#FF8A80"/>
+  <circle cx="445" cy="195" r="12" fill="#FF8A80"/>
+</svg>

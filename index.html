@@ -2,14 +2,18 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icon.svg" />
     <!-- 모바일 앱처럼 보이기 위한 설정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="옹알옹알">
     <meta name="mobile-web-app-capable" content="yes">
-    
-    <title>20개월 낱말카드</title>
+    <meta name="theme-color" content="#FFD966">
+
+    <title>옹알옹알</title>
     <style>
       body { 
         margin: 0; 
@@ -24,9 +28,16 @@
         height: 100%;
       }
     </style>
-    <script type="module" crossorigin src="/flash-card/assets/index-CmT4BW7z.js"></script>
+    <script type="module" crossorigin src="/flash-card/assets/index-CvCTtoZ0.js"></script>
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/flash-card/sw.js');
+        });
+      }
+    </script>
   </body>
 </html>

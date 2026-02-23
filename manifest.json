@@ -1,0 +1,17 @@
+{
+  "name": "옹알옹알",
+  "short_name": "옹알옹알",
+  "start_url": "/flash-card/",
+  "scope": "/flash-card/",
+  "display": "standalone",
+  "background_color": "#FFD966",
+  "theme_color": "#FFD966",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
