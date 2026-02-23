@@ -26,3 +26,12 @@ Vite 기반 React 18 + TypeScript 단일 페이지 앱. 라우터나 상태관�
 ## 카드 추가 방법
 
 `public/images/`에 이미지 추가 (영문 파일명, 50KB 미만) 후 `src/App.tsx`의 `wordData` 배열에 항목 추가.
+
+## 이미지 생성
+
+Gemini API(`gemini-2.5-flash-image`)로 이미지를 생성한다. API 키는 환경변수 `GOOGLE_API_KEY`에 설정. 프롬프트에 isometric 스타일(3/4 앵글, 약간의 입체감)을 명시한다. 생성 후 반드시 아래 후처리를 수행한다:
+
+1. `sips -Z 512`로 최대 512px 리사이즈
+2. `sips -s format jpeg -s formatOptions 80`으로 JPG 변환
+3. 원본 PNG 삭제
+4. `wordData`에 `.jpg` 확장자로 등록

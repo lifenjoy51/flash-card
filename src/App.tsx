@@ -7,7 +7,6 @@ const wordData = [
   { name: '포크', file: 'fork.jpg' },
   { name: '의자', file: 'chair_child.jpg' },
   { name: '의자', file: 'chair_adult.jpg' },
-  { name: '가방', file: 'bag.jpg' },
   { name: '텐트', file: 'tent.jpg' },
   { name: '신발', file: 'shoes.jpg' },
   { name: '양말', file: 'socks.jpg' },
@@ -16,7 +15,19 @@ const wordData = [
   { name: '체온계', file: 'thermometer.png' },
   { name: '냉장고', file: 'fridge.jpg' },
   { name: '숟가락', file: 'spoon.jpg' },
-  { name: '젓가락', file: 'chopsticks.jpg' }
+  { name: '젓가락', file: 'chopsticks.jpg' },
+  { name: '휴지', file: 'tissue.jpg' },
+  { name: '휴지', file: 'toilet_paper.jpg' },
+  { name: '우유', file: 'milk.jpg' },
+  { name: '티비', file: 'tv.jpg' },
+  { name: '놀이터', file: 'playground.jpg' },
+  { name: '자동차', file: 'car.jpg' },
+  { name: '로봇청소기', file: 'robot_vacuum.jpg' },
+  { name: '식빵', file: 'bread.jpg' },
+  { name: '딸기', file: 'strawberry.jpg' },
+  { name: '바나나', file: 'banana.jpg' },
+  { name: '귤', file: 'tangerine.jpg' },
+  { name: '밥', file: 'rice.jpg' }
 ];
 
 export default function App() {
