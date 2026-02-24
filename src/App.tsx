@@ -12,7 +12,7 @@ const wordData = [
   { name: '양말', file: 'socks.jpg' },
   { name: '인형', file: 'doll.jpg' },
   { name: '세탁기', file: 'washer.jpg' },
-  { name: '체온계', file: 'thermometer.png' },
+  { name: '체온계', file: 'thermometer.jpg' },
   { name: '냉장고', file: 'fridge.jpg' },
   { name: '숟가락', file: 'spoon.jpg' },
   { name: '젓가락', file: 'chopsticks.jpg' },
