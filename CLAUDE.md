@@ -27,6 +27,15 @@ Vite 기반 React 18 + TypeScript 단일 페이지 앱. 라우터나 상태관�
 
 `public/images/`에 이미지 추가 (영문 파일명, 50KB 미만) 후 `src/App.tsx`의 `wordData` 배열에 항목 추가.
 
+## Google Sheets 단어 관리
+
+`.env` 파일에 `APPS_SCRIPT_URL`과 `SPREADSHEET_ID`를 저장 (gitignore 됨). 시트명: `data`, 컬럼: `word`, `added_date`.
+
+- `added_date` 있음 → 이미지 파일 완료, 없음 → 단어만 등록됨
+- **읽기**: `?action=read`
+- **추가**: `?action=append&word=단어` (한글은 `--data-urlencode` 사용, 중복 자동 방지)
+- **전체 동기화**: `?action=sync&items=JSON배열`
+
 ## 이미지 생성
 
 Gemini API(`gemini-2.5-flash-image`)로 이미지를 생성한다. API 키는 환경변수 `GOOGLE_API_KEY`에 설정. 프롬프트에 isometric 스타일(3/4 앵글, 약간의 입체감)을 명시한다. 생성 후 반드시 아래 후처리를 수행한다:
