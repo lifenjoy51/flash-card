@@ -8,12 +8,56 @@ function FlashCard() {
   const [showText, setShowText] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // 셔플된 리스트 생성
-  const shuffledList = useMemo(() => {
-    return [...wordData].sort(() => Math.random() - 0.5);
+  // 숨긴 카드 로드
+  const hiddenCards = useMemo(() => {
+    try {
+      const raw = localStorage.getItem('hiddenCards');
+      if (raw) return new Set<string>(JSON.parse(raw));
+    } catch { /* ignore */ }
+    return new Set<string>();
   }, []);
 
+  // 셔플된 리스트 생성 (숨긴 카드 제외)
+  const shuffledList = useMemo(() => {
+    const visible = wordData.filter(item => !hiddenCards.has(item.file));
+    return visible.sort(() => Math.random() - 0.5);
+  }, [hiddenCards]);
+
   const currentItem = shuffledList[index];
+
+  if (shuffledList.length === 0) {
+    return (
+      <div style={{
+        width: '100dvw',
+        height: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FAFAFA',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        gap: '20px',
+      }}>
+        <p style={{ fontSize: '1.3rem', color: '#666' }}>
+          모든 카드가 숨김 상태입니다
+        </p>
+        <button
+          onClick={() => { window.location.hash = 'gallery'; }}
+          style={{
+            padding: '12px 24px',
+            borderRadius: '50px',
+            border: 'none',
+            backgroundColor: 'rgba(0,0,0,0.1)',
+            color: '#666',
+            fontSize: '1rem',
+            cursor: 'pointer',
+          }}
+        >
+          전체보기에서 카드 켜기
+        </button>
+      </div>
+    );
+  }
 
   const speak = (text: string) => {
     window.speechSynthesis.cancel();
