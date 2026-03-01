@@ -1,6 +1,18 @@
+import { useEffect } from 'react';
 import { wordData } from './data';
+import { imageUrl } from './imageUrl';
 
 export default function Gallery() {
+  useEffect(() => {
+    const body = document.body;
+    body.style.overflow = 'auto';
+    body.style.position = 'static';
+    return () => {
+      body.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+    };
+  }, []);
+
   return (
     <div style={{
       minHeight: '100dvh',
@@ -50,7 +62,7 @@ export default function Gallery() {
             }}
           >
             <img
-              src={`images/${item.file}`}
+              src={imageUrl(item.file)}
               alt={item.name}
               style={{
                 width: '100%',

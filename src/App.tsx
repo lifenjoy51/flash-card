@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { wordData } from './data';
+import { imageUrl } from './imageUrl';
 import Gallery from './Gallery';
 
 function FlashCard() {
@@ -120,7 +121,7 @@ function FlashCard() {
         marginTop: '40px'
       }}>
         <img
-          src={`images/${currentItem.file}`}
+          src={imageUrl(currentItem.file)}
           alt={currentItem.name}
           key={currentItem.file}
           style={{
