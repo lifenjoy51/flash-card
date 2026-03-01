@@ -54,7 +54,7 @@ Instructions:
    - Shapes: Simplify complex geometry into basic, rounded shapes. Avoid sharp corners if possible.
    - Colors: Use solid, simple flat colors. If the object has a well-known, natural color (e.g., banana=yellow, strawberry=red, tree=green), use that realistic color. If the object has no representative color (e.g., cup, bowl, book), use white or light gray as the base color. Use only 1-3 colors per object. No rainbow or multicolor schemes. No gradients, complex textures, or realistic shading.
    - Perspective: Isometric style with a 3/4 angle view and slight 3D depth.
-4. No text or labels in the image. The object should be centered and fill the entire frame edge-to-edge with zero margin or padding.
+4. No text or labels in the image. The output image must be a perfect square (1:1 aspect ratio). The object should be centered and fill the entire frame edge-to-edge with zero margin or padding.
 
 Goal: The final image should be an instantly recognizable, clean, and simple icon of the entire '{한글단어}' ({영문단어}) that a 20-month-old baby can easily identify.
 ```
@@ -74,7 +74,7 @@ Instructions:
    - Shapes: Simplify complex geometry into basic, rounded shapes. Avoid sharp corners if possible.
    - Colors: Use solid, simple flat colors ONLY for the '{한글단어}' ({영문단어}) based on its realistic skin/body color. The rest of the body should be very light gray or faded. No gradients, complex textures, or realistic shading.
    - Perspective: Front-facing view for facial features (눈, 코, 입). Side-facing view for ear (귀). Simple front or side view for limbs (손, 발).
-4. No text or labels in the image. The character should be centered and fill the entire frame edge-to-edge with zero margin or padding.
+4. No text or labels in the image. The output image must be a perfect square (1:1 aspect ratio). The character should be centered and fill the entire frame edge-to-edge with zero margin or padding.
 
 Goal: The final image should make the '{한글단어}' ({영문단어}) instantly recognizable by highlighting it on a cute toddler character, so a 20-month-old baby can easily identify which body part it refers to.
 ```
@@ -94,20 +94,24 @@ Instructions:
    - Shapes: Simplify complex geometry into basic, rounded shapes. Avoid sharp corners if possible.
    - Colors: Use solid, simple flat colors based on the object's iconic color (e.g., yellow for moon/star, orange-yellow for sun). Use only 1-3 colors per object. No rainbow or multicolor schemes. No gradients, complex textures, or realistic shading.
    - Perspective: Flat, front-facing view.
-4. No text or labels in the image. The object should be centered and fill the entire frame edge-to-edge with zero margin or padding.
+4. No text or labels in the image. The output image must be a perfect square (1:1 aspect ratio). The object should be centered and fill the entire frame edge-to-edge with zero margin or padding.
 
 Goal: The final image should be a cute, friendly, and instantly recognizable character version of '{한글단어}' ({영문단어}) that a 20-month-old baby can easily identify and feel comfortable with.
 ```
 
 ### 후처리 (생성 후 반드시 수행)
 
-1. size에 따라 `sips -Z`로 리사이즈 (실물 크기 반영):
-   - `xl` (버스, 미끄럼틀 등): `sips -Z 512`
-   - `lg` (냉장고, 자전거 등): `sips -Z 460`
-   - `md` (노트북, 의자 등): `sips -Z 400`
-   - `sm` (컵, 사과 등): `sips -Z 340`
-   - `xs` (숟가락, 포크 등): `sips -Z 280`
-2. `sips --padToHeightWidth 512 512 --padColor FFFFFF`로 흰색 여백 추가하여 정사각형(512x512) 통일
-3. `sips -s format jpeg -s formatOptions 80`으로 JPG 변환
-4. 원본 PNG 삭제
+Python PIL을 사용하여 처리한다. 한글 파일명 원본(`public/images/`)에서 영문 파일명으로 변환.
+
+1. **여백 트림**: 흰색 여백(threshold=20)을 자동 감지하여 제거. 콘텐츠만 남긴 뒤 정사각형으로 맞춤 (긴 변 기준, 흰색 패딩)
+2. **size별 리사이즈** (실물 크기 반영):
+   - `xl` (버스, 미끄럼틀 등): 512px
+   - `lg` (냉장고, 자전거 등): 460px
+   - `md` (노트북, 의자 등): 400px
+   - `sm` (컵, 사과 등): 340px
+   - `xs` (숟가락, 포크 등): 280px
+3. **512x512 패딩**: 흰색(#FFFFFF) 여백으로 정사각형 통일
+4. **JPEG 저장**: quality=80
 5. `wordData`에 `{ name, file, size }` 형태로 등록
+
+> **참고**: 한글 파일명 원본은 `.gitignore`에서 제외됨 (`public/images/[가-힣]*`). macOS 파일명은 NFD 인코딩이므로 Python에서 `unicodedata.normalize('NFC', ...)` 처리 필요.

@@ -51,11 +51,13 @@ export default function Gallery() {
     };
   }, []);
 
-  const filteredData = wordData.filter(item => {
-    if (filter === 'visible') return !hiddenCards.has(item.file);
-    if (filter === 'hidden') return hiddenCards.has(item.file);
-    return true;
-  });
+  const filteredData = wordData
+    .filter(item => {
+      if (filter === 'visible') return !hiddenCards.has(item.file);
+      if (filter === 'hidden') return hiddenCards.has(item.file);
+      return true;
+    })
+    .sort((a, b) => a.name.localeCompare(b.name, 'ko'));
 
   return (
     <div style={{

@@ -3,3 +3,6 @@ dist
 .DS_Store
 file_list.txt
 .env
+
+# 한글 파일명 이미지 원본 (영문 파일명으로 후처리 후 커밋)
+public/images/[가-힣]*
