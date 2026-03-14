@@ -48,7 +48,6 @@ export const wordData = [
   { name: '슬리퍼', file: 'slippers.jpg', size: 'sm' },
   { name: '오리', file: 'duck.jpg', size: 'sm' },
   { name: '오토바이', file: 'motorcycle.jpg', size: 'lg' },
-  { name: '요거트', file: 'yogurt.jpg', size: 'xs' },
   { name: '유모차', file: 'stroller.jpg', size: 'lg' },
   { name: '입', file: 'mouth.jpg', size: 'md' },
   { name: '자전거', file: 'bicycle.jpg', size: 'lg' },
