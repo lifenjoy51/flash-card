@@ -101,7 +101,7 @@ Goal: The final image should be a cute, friendly, and instantly recognizable cha
 
 ### 후처리 (생성 후 반드시 수행)
 
-Python PIL을 사용하여 처리한다. 한글 파일명 원본(`public/images/`)에서 영문 파일명으로 변환.
+Python PIL을 사용하여 처리한다. 한글 파일명 원본(`originals/`)에서 영문 파일명으로 변환하여 `public/images/`에 저장.
 
 1. **여백 트림**: 흰색 여백(threshold=20)을 자동 감지하여 제거. 콘텐츠만 남긴 뒤 정사각형으로 맞춤 (긴 변 기준, 흰색 패딩)
 2. **size별 리사이즈** (실물 크기 반영):
@@ -114,4 +114,4 @@ Python PIL을 사용하여 처리한다. 한글 파일명 원본(`public/images/
 4. **JPEG 저장**: quality=80
 5. `wordData`에 `{ name, file, size }` 형태로 등록
 
-> **참고**: 한글 파일명 원본은 `.gitignore`에서 제외됨 (`public/images/[가-힣]*`). macOS 파일명은 NFD 인코딩이므로 Python에서 `unicodedata.normalize('NFC', ...)` 처리 필요.
+> **참고**: 한글 파일명 원본은 `originals/`에 저장하며, `.gitignore`에서 제외됨. macOS 파일명은 NFD 인코딩이므로 Python에서 `unicodedata.normalize('NFC', ...)` 처리 필요.

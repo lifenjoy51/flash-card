@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { readdirSync, readFileSync } from 'fs'
+import { readdirSync, readFileSync, statSync } from 'fs'
 import { createHash } from 'crypto'
 import { resolve } from 'path'
 
@@ -11,7 +11,9 @@ function imageHashPlugin() {
       const imgDir = resolve(__dirname, 'public/images')
       const hashes: Record<string, string> = {}
       for (const file of readdirSync(imgDir)) {
-        const content = readFileSync(resolve(imgDir, file))
+        const filePath = resolve(imgDir, file)
+        if (!statSync(filePath).isFile()) continue
+        const content = readFileSync(filePath)
         hashes[file] = createHash('md5').update(content).digest('hex').slice(0, 8)
       }
       return {
